@@ -99,9 +99,11 @@ temp2 = np.dot(Xarg.T,Y)
 
 #closed form
 w = inv(temp1).dot(temp2)
+
 #gradient descent 
 wgd = np.array([[0], [0]])
 alpha = 0.1
+
 delta_err = np.dot(np.dot(Xarg.T, Xarg), wgd) - np.dot(Xarg.T, Y)
 for k in range(0, 100):
     wgd = wgd - alpha * delta_err
