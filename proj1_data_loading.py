@@ -71,22 +71,7 @@ print(training_set[9])
 
 
 
-# def LRweights(input,output)
-#     XTXinv = numpy.linalg.pinv(np.matmul(input.T,input))
-#     XTy = np.matmul(input.T,output)
-#     return np.matmul(XTXinv,XTy)
-
-
-# def weight_reg(input,1,output)
-#     XTXinv = numpy.linalg.pinv(np.matmul(input.T,input) + 1 * np.identity(21))
-#     XTy = np.matmul(input.T,output)
-#     return np.matmul(XTXinv,XTy)
-
-# we use w = (X^T X)^-1 X^T y
-# train_x = training_set[0]
-# train_y = training_set[1]
-# weight = LRweights(training_set,train_y)
-
+#         TASK 2               #
 X = np.array([[0.86], [0.09], [-0.85], [0.87], [-0.44], [-0.43],
               [-1.10], [0.40], [-0.96], [0.17]])
 
@@ -102,13 +87,16 @@ w = inv(temp1).dot(temp2)
 
 #gradient descent 
 wgd = np.array([[0], [0]])
-alpha = 0.1
+eta = 0.1
+beta = 0.1
+alpha = eta/(1 + beta)
+epsilon = 0.001
 
 delta_err = np.dot(np.dot(Xarg.T, Xarg), wgd) - np.dot(Xarg.T, Y)
-for k in range(0, 100):
-    wgd = wgd - alpha * delta_err
+while abs(delta_err) > epsilon:
+    wgd = wgd - 2 * alpha * delta_err
     delta_err = np.dot(np.dot(Xarg.T, Xarg), wgd) - np.dot(Xarg.T, Y)
-    cost = sum(sum(Y - np.dot(Xarg, wgd)))
+    #cost = sum(sum(Y - np.dot(Xarg, wgd)))
 
 print (wgd)
 print ("")
